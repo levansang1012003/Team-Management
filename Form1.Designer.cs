@@ -44,11 +44,23 @@
             this.btn_search = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.managament_TeamDataSet2 = new TeamManagament_Test.Managament_TeamDataSet2();
+            this.managamentTeamDataSet2BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentTableAdapter = new TeamManagament_Test.Managament_TeamDataSet2TableAdapters.DepartmentTableAdapter();
+            this.departmentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.department_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.department_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptions = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgv)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managament_TeamDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managamentTeamDataSet2BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,9 +85,17 @@
             // 
             // dtgv
             // 
+            this.dtgv.AutoGenerateColumns = false;
             this.dtgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgv.BackgroundColor = System.Drawing.Color.White;
             this.dtgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.department_id,
+            this.department_name,
+            this.descriptions});
+            this.dtgv.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dtgv.DataSource = this.departmentBindingSource;
+            this.dtgv.GridColor = System.Drawing.Color.White;
             this.dtgv.Location = new System.Drawing.Point(0, 3);
             this.dtgv.Name = "dtgv";
             this.dtgv.ReadOnly = true;
@@ -219,9 +239,59 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // managament_TeamDataSet2
+            // 
+            this.managament_TeamDataSet2.DataSetName = "Managament_TeamDataSet2";
+            this.managament_TeamDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // managamentTeamDataSet2BindingSource
+            // 
+            this.managamentTeamDataSet2BindingSource.DataSource = this.managament_TeamDataSet2;
+            this.managamentTeamDataSet2BindingSource.Position = 0;
+            // 
+            // departmentBindingSource
+            // 
+            this.departmentBindingSource.DataMember = "Department";
+            this.departmentBindingSource.DataSource = this.managament_TeamDataSet2;
+            // 
+            // departmentTableAdapter
+            // 
+            this.departmentTableAdapter.ClearBeforeFill = true;
+            // 
+            // departmentBindingSource1
+            // 
+            this.departmentBindingSource1.DataMember = "Department";
+            this.departmentBindingSource1.DataSource = this.managament_TeamDataSet2;
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(TeamManagament_Test.Form1);
+            // 
+            // department_id
+            // 
+            this.department_id.DataPropertyName = "department_id";
+            this.department_id.HeaderText = "department_id";
+            this.department_id.Name = "department_id";
+            this.department_id.ReadOnly = true;
+            // 
+            // department_name
+            // 
+            this.department_name.DataPropertyName = "department_name";
+            this.department_name.HeaderText = "department_name";
+            this.department_name.Name = "department_name";
+            this.department_name.ReadOnly = true;
+            // 
+            // descriptions
+            // 
+            this.descriptions.DataPropertyName = "descriptions";
+            this.descriptions.DataSource = this.departmentBindingSource1;
+            this.descriptions.DisplayMember = "descriptions";
+            this.descriptions.HeaderText = "descriptions";
+            this.descriptions.Name = "descriptions";
+            this.descriptions.ReadOnly = true;
+            this.descriptions.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.descriptions.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.descriptions.ValueMember = "descriptions";
             // 
             // Form1
             // 
@@ -240,6 +310,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.settingsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managament_TeamDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.managamentTeamDataSet2BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -263,6 +337,14 @@
         private System.Windows.Forms.Button btn_search;
         private System.Windows.Forms.BindingSource settingsBindingSource;
         private System.Windows.Forms.BindingSource form1BindingSource;
+        private System.Windows.Forms.BindingSource managamentTeamDataSet2BindingSource;
+        private Managament_TeamDataSet2 managament_TeamDataSet2;
+        private System.Windows.Forms.BindingSource departmentBindingSource;
+        private Managament_TeamDataSet2TableAdapters.DepartmentTableAdapter departmentTableAdapter;
+        private System.Windows.Forms.BindingSource departmentBindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn department_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn department_name;
+        private System.Windows.Forms.DataGridViewComboBoxColumn descriptions;
     }
 }
 

@@ -33,6 +33,58 @@ namespace TeamManagament_Test
             }
 
         }
+        private DataTable GetAllDepartmentIds()
+        {
+            DataTable descriptions = new DataTable();
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT DISTINCT descriptions FROM Department", conn))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(descriptions);
+                        Loadf();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading department IDs: " + ex.Message);
+            }
+            Loadf();
+
+            return descriptions;
+        }
+           
+        private void SetupDataGridViewColumns()
+        {
+            dtgv.AutoGenerateColumns = false; // Prevent auto-generation of columns
+            dtgv.Columns.Clear();
+             List<string> departmentItems = new List<string> { "Administration", "Director", "Development" };
+
+            // Add Team ID column
+            DataGridViewTextBoxColumn Department_id = new DataGridViewTextBoxColumn();
+            Department_id.HeaderText = "Mã Team"; // "Team ID" in Vietnamese
+            Department_id.DataPropertyName = "department_id"; // This should match the column name in your data source
+            dtgv.Columns.Add(Department_id);
+
+            // Add Team Name column
+            DataGridViewTextBoxColumn Department_name = new DataGridViewTextBoxColumn();
+            Department_name.HeaderText = "Tên Team"; // "Team Name" in Vietnamese
+            Department_name.DataPropertyName = "department_name"; // This should match the column name in your data source
+            dtgv.Columns.Add(Department_name);
+
+            // Add Department ID ComboBox column
+            DataGridViewComboBoxColumn descriptions = new DataGridViewComboBoxColumn();
+            descriptions.HeaderText = "Tên bộ phận"; // "Department ID" in Vietnamese
+            descriptions.Name = "descriptions";
+            descriptions.DataPropertyName = "descriptions"; // This binds the column to the "department_id" field in your data source
+            descriptions.DisplayMember = "descriptions"; // Display the ID itself
+            descriptions.ValueMember = "descriptions";
+            descriptions.DataSource = GetAllDepartmentIds(); // Set the combo box options to all available department IDs
+            dtgv.Columns.Add(descriptions);
+        }
 
         private void btn_Insert_Click(object sender, EventArgs e)
         {
@@ -93,10 +145,7 @@ namespace TeamManagament_Test
                 conn.Open();
             }
             Loadf();
-
-            dtgv.Columns[0].HeaderText = "Mã Team";
-            dtgv.Columns[1].HeaderText = "Tên Team";
-            dtgv.Columns[2].HeaderText = "Bộ Phận";
+            SetupDataGridViewColumns();
             dtgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
         }
           public void Loadf()
